@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+folder_map.json
+manifest.json
+.DS_Store

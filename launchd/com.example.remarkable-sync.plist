@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Weekly reMarkable sync, Sundays 10:00.
+     Edit the paths, then:
+       cp com.example.remarkable-sync.plist ~/Library/LaunchAgents/
+       launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.example.remarkable-sync.plist
+     Use an absolute python3 (for example the venv that has pypdf and rmc). -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.example.remarkable-sync</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/path/to/venv/bin/python3</string>
+    <string>/path/to/remarkable-toolchain/remarkable_sync.py</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Weekday</key>
+    <integer>0</integer>
+    <key>Hour</key>
+    <integer>10</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    <key>RM_OUTPUT_DIR</key>
+    <string>/path/to/output</string>
+    <key>RM_FOLDER_MAP</key>
+    <string>/path/to/folder_map.json</string>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/tmp/com.example.remarkable-sync.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/com.example.remarkable-sync.err.log</string>
+</dict>
+</plist>
